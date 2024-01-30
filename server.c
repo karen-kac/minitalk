@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:57:06 by myokono           #+#    #+#             */
-/*   Updated: 2024/01/30 17:56:38 by myokono          ###   ########.fr       */
+/*   Updated: 2024/01/30 22:49:10 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void ft_signal_handler(int sig, siginfo_t *info, void *context)
     static char c = 0;
 
     (void)context;
-	(void)info;
     
     if (sig == SIGUSR1)
         c |= (1 << bit);
@@ -26,6 +25,8 @@ void ft_signal_handler(int sig, siginfo_t *info, void *context)
     if (bit == 8)
     {
         write(1, &c, 1);
+		if (c == '\0')
+			kill(info->si_pid, SIGUSR2);
         bit = 0;
         c = 0;
     }

@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:56:58 by myokono           #+#    #+#             */
-/*   Updated: 2024/01/30 17:57:16 by myokono          ###   ########.fr       */
+/*   Updated: 2024/01/30 22:00:11 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,26 @@ int main(int argc, char **argv)
     int pid;
     char *message;
 
-    if (argc != 3)
+
+	if (argc != 3 || !ft_isdigit(*argv[1]))
     {
         ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
         return 1;
     }
-
-    pid = ft_atoi(argv[1]);
+	pid = ft_atoi(argv[1]);
+	if (pid <= 1)
+	{
+		 ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
+        return 1;
+	}
     message = argv[2];
-
+	
     while (*message)
     {
         ft_send_bit(pid, *message);
         message++;
     }
+	ft_send_bit(pid,10);
 
     return 0;
 }
