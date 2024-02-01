@@ -10,50 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minitalk.h"
 
-void ft_send_bit(int pid, char c)
+void	ft_send_bit(int pid, char c)
 {
 	int	i;
 
 	i = 0;
-    while (i < 8)
-    {
-        usleep(100);
-        if (c & (1 << i))
-            kill(pid, SIGUSR1);
-        else
-            kill(pid, SIGUSR2);
+	while (i < 8)
+	{
+		usleep(100);
+		if (c & (1 << i))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
 		i++;
-    }
+	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    int pid;
-    char *message;
-
+	int		pid;
+	char	*message;
 
 	if (argc != 3 || !ft_isdigit(*argv[1]))
-    {
-        ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
-        return 1;
-    }
+	{
+		ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
+		return (1);
+	}
 	pid = ft_atoi(argv[1]);
 	if (pid <= 1)
 	{
-		 ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
-        return 1;
+		ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
+		return (1);
 	}
-    message = argv[2];
-	
-    while (*message)
-    {
-        ft_send_bit(pid, *message);
-        message++;
-    }
-	ft_send_bit(pid,10);
-
-    return 0;
+	message = argv[2];
+	while (*message)
+	{
+		ft_send_bit(pid, *message);
+		message++;
+	}
+	ft_send_bit(pid, 10);
+	return (0);
 }

@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
-#define MINITALK_H
+# define MINITALK_H
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "libftprintf/ft_printf.h"
+# include "libft/libft.h"
+# include "libftprintf/ft_printf.h"
+# include <signal.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-void ft_send_bit(int pid, char c);
+void	ft_send_bit(int pid, char c);
 
-void ft_signal_handler(int sig, siginfo_t *info, void *context);
+void	ft_signal_handler(int sig, siginfo_t *info, void *context);
 
 #endif
-
