@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:57:06 by myokono           #+#    #+#             */
-/*   Updated: 2024/01/30 22:49:10 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/01 16:20:30 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_signal_handler(int sig, siginfo_t *info, void *context)
 	static int	bit;
 	static char	c;
 
-	bit = 0;
-	c = 0;
 	(void)context;
 	if (sig == SIGUSR1)
 		c |= (1 << bit);
@@ -39,7 +37,9 @@ int	main(void)
 	pid_t				pid;
 
 	pid = getpid();
-	ft_printf("Server PID: %d\n", pid);
+	write(1, "Server PID:", 11);
+	ft_itoa_write(pid);
+	write(1, "\n", 1);
 	sa.sa_sigaction = ft_signal_handler;
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);

@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:56:58 by myokono           #+#    #+#             */
-/*   Updated: 2024/01/30 22:00:11 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/01 16:00:51 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || !ft_isdigit(*argv[1]))
 	{
-		ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
+		write(1, "Usage: ./client [server_pid] [message]\n", 39);
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
 	if (pid <= 1)
 	{
-		ft_printf("Usage: %s [server_pid] [message]\n", argv[0]);
+		write(1, "Usage: ./client [server_pid] [message]\n", 39);
 		return (1);
 	}
 	message = argv[2];

@@ -6,15 +6,14 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:38:10 by myokono           #+#    #+#             */
-/*   Updated: 2024/01/30 19:48:19 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/01 15:59:41 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include "libft/libft.h"
-# include "libftprintf/ft_printf.h"
+# include <limits.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,5 +21,11 @@
 void	ft_send_bit(int pid, char c);
 
 void	ft_signal_handler(int sig, siginfo_t *info, void *context);
+
+int		ft_atoi(const char *str);
+
+int		ft_isdigit(int c);
+
+void	ft_itoa_write(int n);
 
 #endif
