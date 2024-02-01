@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:56:58 by myokono           #+#    #+#             */
-/*   Updated: 2024/02/01 16:00:51 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/01 18:15:01 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_send_bit(int pid, char c)
 	i = 0;
 	while (i < 8)
 	{
-		usleep(100);
-		if (c & (1 << i))
+		if (c & (1 << i)) //bit AND
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
+		usleep(100);
 		i++;
 	}
 }

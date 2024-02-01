@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:57:06 by myokono           #+#    #+#             */
-/*   Updated: 2024/02/01 16:20:30 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/01 18:15:32 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_signal_handler(int sig, siginfo_t *info, void *context)
 
 	(void)context;
 	if (sig == SIGUSR1)
-		c |= (1 << bit);
+		c |= (1 << bit); //bit OR
 	bit++;
 	if (bit == 8)
 	{
