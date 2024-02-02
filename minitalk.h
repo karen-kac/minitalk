@@ -6,7 +6,7 @@
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:38:10 by myokono           #+#    #+#             */
-/*   Updated: 2024/02/01 15:59:41 by myokono          ###   ########.fr       */
+/*   Updated: 2024/02/02 11:25:51 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 
 void	ft_itoa_write(int n);
+
+void	ft_signal_handler_client(int sig);
 
 #endif
