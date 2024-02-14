@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 16:56:58 by myokono           #+#    #+#             */
-/*   Updated: 2024/02/14 14:39:21 by myokono          ###   ########.fr       */
+/*   Created: 2024/02/13 19:27:49 by myokono           #+#    #+#             */
+/*   Updated: 2024/02/13 19:27:51 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	ft_send_bit(int pid, char c)
 			kill(pid, SIGUSR2);
 		usleep(100);
 		i++;
+	}
+}
+
+void	ft_signal_handler_client(int sig)
+{
+	if (sig == SIGUSR2)
+	{
+		write(1, "Message successfully sent!\n", 27);
+		exit(0);
 	}
 }
 
@@ -54,6 +63,7 @@ int	main(int argc, char **argv)
 	pid = get_valid_pid(argc, argv);
 	if (pid == -1)
 		return (1);
+	signal(SIGUSR2, ft_signal_handler_client);
 	message = argv[2];
 	while (*message)
 	{
@@ -61,5 +71,6 @@ int	main(int argc, char **argv)
 		message++;
 	}
 	ft_send_bit(pid, '\0');
+	pause();
 	return (0);
 }

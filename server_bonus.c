@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokono <myokono@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 16:57:06 by myokono           #+#    #+#             */
-/*   Updated: 2024/02/14 14:34:41 by myokono          ###   ########.fr       */
+/*   Created: 2024/02/13 19:28:12 by myokono           #+#    #+#             */
+/*   Updated: 2024/02/13 19:28:14 by myokono          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_signal_handler(int sig, siginfo_t *info, void *context)
 	static char	c;
 
 	(void)context;
-	(void)info;
 	if (sig == SIGUSR1)
 		c |= (1 << bit);
 	bit++;
@@ -28,7 +27,7 @@ void	ft_signal_handler(int sig, siginfo_t *info, void *context)
 		if (c == '\0')
 		{
 			write(1, "\n", 1);
-//			kill(info->si_pid, SIGUSR2);
+			kill(info->si_pid, SIGUSR2);
 		}
 		bit = 0;
 		c = 0;
